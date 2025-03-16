@@ -86,5 +86,18 @@ const char* SPLUNK_TOKEN = "your-splunk-token";
 - Particle Device OS
 - HttpClient library (automatically installed)
 
+## Testing
+### Test Splunk Integration
+Use the provided `test_splunk.sh` script to test the Splunk HEC endpoint:
+
+```bash
+./test_splunk.sh
+```
+
+This will send sample sensor data matching our device format:
+- Device ID: e00fce68bd9b3403195a5d08
+- PM2.5, PM10, and temperature readings
+- Current timestamp
+
 ## Contributing
 Feel free to submit issues and enhancement requests!
