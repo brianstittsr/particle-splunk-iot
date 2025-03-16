@@ -47,14 +47,22 @@ void loop() {
 }
 
 void sendToSplunk(float pm2_5, float pm10, float temperature) {
-    // Create JSON payload manually
-    char payload[256];
+    // Get device IP address
+    IPAddress ip = WiFi.localIP();
+    String ipStr = String(ip[0]) + "." + String(ip[1]) + "." + String(ip[2]) + "." + String(ip[3]);
+    
+    // Create JSON payload manually with IP address
+    char payload[512];
     snprintf(payload, sizeof(payload),
-        "{\"event\":\"particle_sensor_data\",\"fields\":{\"pm2_5\":%0.2f,\"pm10\":%0.2f,\"temperature\":%0.2f,\"device_id\":\"%s\",\"timestamp\":%ld}}",
+        "{\"event\":\"particle_sensor_data\",\"fields\":{\"pm2_5\":%0.2f,\"pm10\":%0.2f,\"temperature\":%0.2f,\"device_id\":\"%s\",\"ip_address\":\"%s\",\"timestamp\":%ld}}",
         pm2_5, pm10, temperature,
         System.deviceID().c_str(),
+        ipStr.c_str(),
         Time.now()
     );
+    
+    // Log the IP address for debugging
+    Serial.printlnf("Device IP: %s", ipStr.c_str());
 
     // Prepare HTTP request
     http_header_t headers[] = {

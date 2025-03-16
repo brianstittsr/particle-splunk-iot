@@ -6,12 +6,13 @@ MAX_TIMEOUT=10
 
 # Test data that matches our Particle device format
 echo "Testing Splunk HEC endpoint..."
-# Try to resolve the host first
-echo "Resolving host splunk.tipflips.com..."
-host splunk.tipflips.com
+# Try different connection methods
+echo "Testing Splunk connectivity..."
 
-# Add verbose output and use HTTPS
-curl -v -k "https://splunk.tipflips.com:8088/services/collector" \
+# Method 1: Direct HTTPS (with IP)
+echo "\nMethod 1: Testing direct HTTPS connection to IP..."
+curl -v -k --ipv4 "https://104.21.48.1:8088/services/collector" \
+  --resolve "splunk.tipflips.com:8088:104.21.48.1" \
   -H "Authorization: Splunk f697778b-57ab-46b5-8207-c858760b76fc" \
   -H "Content-Type: application/json" \
   --connect-timeout $CONNECT_TIMEOUT \
