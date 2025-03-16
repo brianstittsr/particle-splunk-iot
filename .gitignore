@@ -1,0 +1,40 @@
+# Particle build files
+*.bin
+*.elf
+*.hex
+*.list
+*.map
+*.o
+*.d
+
+# Dependency directories
+target/
+bin/
+obj/
+build/
+Debug/
+Release/
+
+# IDE specific files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Particle specific
+*.ds_store
+particle.include
+particle.exclude
+
+# Logs and databases
+*.log
+*.sqlite
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
