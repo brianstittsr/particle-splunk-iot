@@ -69,6 +69,10 @@ void sendToSplunk(float pm2_5, float pm10, float temperature) {
     request.hostname = SPLUNK_HOST;
     request.port = SPLUNK_PORT;
     request.path = "/services/collector";
+    request.protocol = "https";
+
+    // Print request details for debugging
+    Serial.printlnf("Connecting to: https://%s:%d%s", request.hostname, request.port, request.path);
 
     // Send request
     Serial.println("Sending data to Splunk...");
